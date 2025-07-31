@@ -29,4 +29,4 @@ d /var/lib/dnf/repos/fedora-f8e7c8bda68a349e 0755 root root - -
 d /var/lib/dnf/repos/updates-79babcf8637033ce 0755 root root - -
 EOF
 rm -f /var/lib/dnf/repos/updates-*/countme /var/lib/dnf/repos/fedora-*/countme
-mv /usr/* /var/usr/*
+mv /usr /var/usr

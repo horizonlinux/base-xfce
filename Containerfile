@@ -26,10 +26,10 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
         ublue-os/staging \
         ublue-os/packages; \
     do \
-    dnf5 -y install dnf5-plugins && \
-    dnf5 -y copr enable $copr; \
-    done && unset -v copr
-    dnf5 -y install gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
+    dnf -y install dnf5-plugins && \
+    dnf -y copr enable $copr; \
+    done && unset -v copr && \
+    dnf -y install gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
     /ctx/build.sh && \
     ostree container commit
     

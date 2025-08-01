@@ -29,9 +29,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y install dnf5-plugins && \
     dnf -y copr enable $copr; \
     done && unset -v copr && \
-    dnf -y @xfce-desktop-enviroment \
-    dnf -y install gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
+    dnf -y install @xfce-desktop-enviroment lightdm lightdm-gtk-greeter gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
     /ctx/build.sh && \
+    systemctl enable lightdm && \
     ostree container commit
     
 ### LINTING

@@ -29,7 +29,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf5 -y install dnf5-plugins && \
     dnf5 -y copr enable $copr; \
     done && unset -v copr
-    for installation in \
+    for stuff in \
         gdk-pixbuf2-modules-extra \
         ublue-brew \
         ublue-fastfetch \
@@ -39,8 +39,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
         ublue-os-luks \
         ublue-os-just; \
     do \
-    dnf5 -y install $installation; \
-    done && unset -v installation
+    dnf5 -y install $stuff; \
+    done && unset -v stuff
     /ctx/build.sh && \
     ostree container commit
     

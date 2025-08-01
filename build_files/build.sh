@@ -22,3 +22,29 @@ dnf5 install -y tmux
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+bash -c 'cat <<EOF > /etc/sysusers.d/custom-users.conf
+# Groups
+g abrt
+g nm-fortisslvpn
+g nm-openconnect
+g nm-openvpn
+g sstpc
+
+# Users
+u abrt - - "ABRT system user" - -
+u nm-fortisslvpn - - "Fortisslvpn user" - -
+u nm-openconnect - - "Openconnect user" - -
+u nm-openvpn - - "Openvpn user" - -
+u sstpc - - "SSTP client user" - -
+EOF'
+systemd-sysusers /etc/sysusers.d/custom-users.conf
+sudo rm -rf /var/run
+sudo ln -s /run /var/run
+sudo bash -c 'cat <<EOF > /etc/tmpfiles.d/custom-var.conf
+d /run/pptp 0750 root root -
+d /var/account 0755 root root -
+d /var/crash 0755 root root -
+d /var/lib/AccountsService 0775 root root -
+d /var/lib/AccountsService/icons 0775 root root -
+EOF'
+systemd-tmpfiles --create /etc/tmpfiles.d/custom-var.conf

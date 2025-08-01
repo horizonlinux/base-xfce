@@ -22,11 +22,3 @@ dnf5 install -y tmux
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
-cat << EOF > /usr/lib/tmpfiles.d/dnf.conf
-d /var/lib/dnf 0755 root root - -
-d /var/lib/dnf/repos 0755 root root - -
-d /var/lib/dnf/repos/fedora-f8e7c8bda68a349e 0755 root root - -
-d /var/lib/dnf/repos/updates-79babcf8637033ce 0755 root root - -
-EOF
-rm -f /var/lib/dnf/repos/updates-*/countme /var/lib/dnf/repos/fedora-*/countme
-mv /usr /var/usr

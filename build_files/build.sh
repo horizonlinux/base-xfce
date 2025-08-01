@@ -23,6 +23,7 @@ dnf5 install -y tmux
 
 systemctl enable podman.socket
 
+mkdir -p /etc/sysusers.d/
 touch /etc/sysusers.d/group-abrt.conf
 touch /etc/sysusers.d/group-nm-fortisslvpn.conf
 touch /etc/sysusers.d/group-nm-openconnect.conf

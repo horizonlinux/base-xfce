@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora-ostree-desktops/xfce-atomic:42
+FROM ghcr.io/ublue-os/base-main:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
@@ -29,6 +29,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y install dnf5-plugins && \
     dnf -y copr enable $copr; \
     done && unset -v copr && \
+    dnf -y @xfce-desktop-enviroment \
     dnf -y install gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
     /ctx/build.sh && \
     ostree container commit

@@ -22,29 +22,26 @@ dnf5 install -y tmux
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
-bash -c 'cat <<EOF > /etc/sysusers.d/custom-users.conf
-# Groups
-g abrt
-g nm-fortisslvpn
-g nm-openconnect
-g nm-openvpn
-g sstpc
 
-# Users
-u abrt - - "ABRT system user" - -
-u nm-fortisslvpn - - "Fortisslvpn user" - -
-u nm-openconnect - - "Openconnect user" - -
-u nm-openvpn - - "Openvpn user" - -
-u sstpc - - "SSTP client user" - -
-EOF'
-systemd-sysusers /etc/sysusers.d/custom-users.conf
+bash -c 'echo "g abrt" > /etc/sysusers.d/group-abrt.conf'
+bash -c 'echo "g nm-fortisslvpn" > /etc/sysusers.d/group-nm-fortisslvpn.conf'
+bash -c 'echo "g nm-openconnect" > /etc/sysusers.d/group-nm-openconnect.conf'
+bash -c 'echo "g nm-openvpn" > /etc/sysusers.d/group-nm-openvpn.conf'
+bash -c 'echo "g sstpc" > /etc/sysusers.d/group-sstpc.conf'
+
+bash -c 'echo "u abrt - - "ABRT system user" - -" > /etc/sysusers.d/user-abrt.conf'
+bash -c 'echo "u nm-fortisslvpn - - "Fortisslvpn user" - -" > /etc/sysusers.d/user-nm-fortisslvpn.conf'
+bash -c 'echo "u nm-openconnect - - "Openconnect user" - -" > /etc/sysusers.d/user-nm-openconnect.conf'
+bash -c 'echo "u nm-openvpn - - "Openvpn user" - -" > /etc/sysusers.d/user-nm-openvpn.conf'
+bash -c 'echo "u sstpc - - "SSTP client user" - -" > /etc/sysusers.d/user-sstpc.conf'
+
 sudo rm -rf /var/run
 sudo ln -s /run /var/run
-sudo bash -c 'cat <<EOF > /etc/tmpfiles.d/custom-var.conf
-d /run/pptp 0750 root root -
-d /var/account 0755 root root -
-d /var/crash 0755 root root -
-d /var/lib/AccountsService 0775 root root -
-d /var/lib/AccountsService/icons 0775 root root -
-EOF'
-systemd-tmpfiles --create /etc/tmpfiles.d/custom-var.conf
+
+bash -c 'echo "d /run/pptp 0750 root root -" > /etc/sysusers.d/var-pptp.conf'
+bash -c 'echo "d /var/account 0755 root root -" > /etc/sysusers.d/var-account.conf'
+bash -c 'echo "d /var/crash 0755 root root -" > /etc/sysusers.d/var-crash.conf'
+bash -c 'echo "d /var/lib/AccountsService 0775 root root -" > /etc/sysusers.d/var-AccountsService.conf'
+bash -c 'echo "d /var/lib/AccountsService/icons 0775 root root -" > /etc/sysusers.d/var-AccountsService-icons.conf'
+
+

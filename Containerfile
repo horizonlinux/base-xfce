@@ -30,7 +30,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y copr enable $copr; \
     done && unset -v copr && \
     dnf -y install @xfce-desktop-environment && \
-    dnf -y install lxdm lxdem-land lxdm-openrc ublue-brew ublue-fastfetch && \
+    dnf -y install lxdm lxdm* ublue-brew ublue-fastfetch && \
     /ctx/build.sh && \
     systemctl enable lxdm && \
     ostree container commit

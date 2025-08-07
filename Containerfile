@@ -30,9 +30,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y copr enable $copr; \
     done && unset -v copr && \
     dnf -y install @xfce-desktop-environment && \
-    dnf -y install lightdm lightdm-gtk-greeter gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
+    dnf -y install lxdm lxdem-land lxdm-openrc gdk-pixbuf2-modules-extra ublue-brew ublue-fastfetch ublue-os-udev-rules ublue-os-update-services ublue-os-signing ublue-os-luks ublue-os-just && \
     /ctx/build.sh && \
-    systemctl enable lightdm && \
+    systemctl enable lxdm && \
     ostree container commit
     
 ### LINTING

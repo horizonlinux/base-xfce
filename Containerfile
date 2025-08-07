@@ -32,6 +32,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y install @xfce-desktop-environment && \
     dnf -y install lxdm lxdm* ublue-brew ublue-fastfetch && \
     /ctx/build.sh && \
+    systemctl disable lightdm && \
     systemctl enable lxdm && \
     ostree container commit
     

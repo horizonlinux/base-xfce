@@ -30,7 +30,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     dnf -y copr enable $copr; \
     done && unset -v copr && \
     dnf -y install @xfce-desktop-environment && \
-    dnf -y install lxdm lxdm* ublue-brew ublue-fastfetch && \
+    dnf -y install lxdm lxdm* ublue-brew ublue-fastfetch yaru* puzzles && \
     /ctx/build.sh && \
     systemctl disable lightdm && \
     systemctl enable lxdm && \
